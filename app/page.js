@@ -2,14 +2,12 @@ import 'styles/styles.css'
 
 export function TodoList({ value }) {
   return (
-    <ul>
-      <li id="item" className="font-mono">
-        <label>
-          <input type="checkbox" />
-          <span>{value}</span>
-        </label>
-      </li>
-    </ul>
+    <li>
+      <label>
+        <input type="checkbox" />
+        <span>{value}</span>
+      </label>
+    </li>
   )
 }
 
@@ -22,9 +20,11 @@ export default function Home() {
         <input id="addButton" type="button" value="Add" />
       </div>
       <div id="todoList">
-        <TodoList value=" Cook dinner" />
-        <TodoList value=" Feed the cats" />
-        <TodoList value=" Water the plants" />
+        <ul id="list">
+          <TodoList value=" Cook dinner" />
+          <TodoList value=" Feed the cats" />
+          <TodoList value=" Water the plants" />
+        </ul>
       </div>
     </main>
   )

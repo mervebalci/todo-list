@@ -1,12 +1,14 @@
 main {
+  align-items: center;
+  text-align: center;
   padding-top: 100px;
   background-color: rgb(66, 32, 190);
   font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
 }
 
 h1 {
-  align-items: center;
-  text-align: center;
   font-size: 10vw;
   font-style: normal;
   font-weight: bold;
@@ -16,8 +18,6 @@ h1 {
 }
 
 #addItem {
-  align-items: center;
-  text-align: center;
   padding-bottom: 35px;
   font-size: 24px;
 }
@@ -34,8 +34,6 @@ h1 {
 }
 
 #addButton {
-  align-items: center;
-  text-align: center;
   padding: 8px 13px;
   margin: 10px 30px;
   font-size: 3.2vw;
@@ -44,16 +42,18 @@ h1 {
   border-color: yellow;
   border-width: 3px;
   border-radius: 13px;
+  cursor: pointer;
 }
 
 #todoList {
   color: rgb(231, 230, 245);
   letter-spacing: -1px;
   font-size: 3vw;
+  align-items: center;
   text-align: center;
 }
 
-#item {
-  align-items: left;
-  word-spacing: -2px;
+#list {
+  text-align: left;
+  word-spacing: 2px;
 }
