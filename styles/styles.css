@@ -24,7 +24,7 @@ h1 {
 
 #addInput {
   color: black;
-  background-color: rgb(255, 255, 132);
+  background-color: rgb(255, 255, 247);
   border-width: 3px;
   border-style: solid;
   border-color: yellow;
@@ -42,7 +42,18 @@ h1 {
   border-color: yellow;
   border-width: 3px;
   border-radius: 13px;
-  cursor: pointer;
+}
+
+#addButton:hover {
+  padding: 8px 13px;
+  margin: 10px 30px;
+  font-size: 3.2vw;
+  color: rgb(66, 32, 190);
+  border-style: solid;
+  border-color: yellow;
+  border-width: 3px;
+  border-radius: 13px;
+  background-color: yellow;
 }
 
 #todoList {

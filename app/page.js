@@ -17,7 +17,7 @@ export default function Home() {
       <h1>TODO LIST</h1>
       <div id="addItem">
         <input id="addInput" type="text" placeholder="Add a new to do..." />
-        <input id="addButton" type="button" value="Add" />
+        <button id="addButton">Add</button>
       </div>
       <div id="todoList">
         <ul id="list">
