@@ -38,6 +38,7 @@ h1 {
   margin: 10px 30px;
   font-size: 3.2vw;
   color: yellow;
+  background-color: rgb(66, 32, 190);
   border-style: solid;
   border-color: yellow;
   border-width: 3px;
@@ -58,7 +59,7 @@ h1 {
 
 #todoList {
   color: rgb(231, 230, 245);
-  letter-spacing: -1px;
+  letter-spacing: 0px;
   font-size: 3vw;
   align-items: center;
   text-align: center;
@@ -66,5 +67,7 @@ h1 {
 
 #list {
   text-align: left;
+  text-transform: capitalize;
   word-spacing: 2px;
+  list-style-type: none;
 }
