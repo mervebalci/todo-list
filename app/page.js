@@ -1,10 +1,9 @@
 'use client';
 import 'styles/styles.css';
-import { createRoot } from 'react-dom/client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Home() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([]);
 
   function buttonClicked() {
     const userInput = document.getElementById("addInput").value
