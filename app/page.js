@@ -6,12 +6,11 @@ export default function Home() {
   function buttonClicked() {
     const userInput = document.getElementById("addInput").value
     
-    const newItem = <TodoItem value={userInput} />
+    const newItem = <Task value={userInput} />
   
     const container = document.getElementById('list');
     const root = createRoot(container);
     root.render(newItem)
-
   }
 
   return (
@@ -22,18 +21,13 @@ export default function Home() {
         <button id="addButton" onClick={buttonClicked}>Add</button>
       </div>
       <div id="todoList">
-        <ul id="list">
-
-        </ul>
+        <TodoList />
       </div>
     </main>
   );
 }
 
-function TodoItem({ value }) {
-  console.log("hey");
-  console.log(value);
-
+function Task({ value }) {
   return (
     <li>
       <label>
@@ -41,5 +35,17 @@ function TodoItem({ value }) {
         <span> {value}</span>
       </label>
     </li>
+  );
+}
+
+function TodoList() {
+  const tasks = ['do the laundry', 'cook dinner', 'water the plants']
+
+  return (
+    <ul id="list">
+      {tasks.map((task, index) => (
+        <Task key={index} value={task} />
+      ))}
+    </ul>
   );
 }
