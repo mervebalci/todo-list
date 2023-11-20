@@ -1,16 +1,19 @@
 'use client';
 import 'styles/styles.css';
 import { createRoot } from 'react-dom/client';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [tasks, setTasks] = useState([])
+
   function buttonClicked() {
     const userInput = document.getElementById("addInput").value
     
-    const newItem = <Task value={userInput} />
-  
-    const container = document.getElementById('list');
-    const root = createRoot(container);
-    root.render(newItem)
+    setTasks([...tasks, userInput])
+    // OR
+    // let newArray = [...tasks] OR let newArray = tasks.map((x) => x);
+    // newArray.push(userInput)
+    // setTasks(newArray)
   }
 
   return (
@@ -21,7 +24,7 @@ export default function Home() {
         <button id="addButton" onClick={buttonClicked}>Add</button>
       </div>
       <div id="todoList">
-        <TodoList />
+        <TodoList tasks={tasks} />
       </div>
     </main>
   );
@@ -38,9 +41,7 @@ function Task({ value }) {
   );
 }
 
-function TodoList() {
-  const tasks = ['do the laundry', 'cook dinner', 'water the plants']
-
+function TodoList({ tasks }) {
   return (
     <ul id="list">
       {tasks.map((task, index) => (
