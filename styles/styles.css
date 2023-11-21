@@ -17,7 +17,7 @@ h1 {
   padding-bottom: 24px;
 }
 
-#addItem {
+#addTask {
   padding-bottom: 35px;
   font-size: 24px;
 }
@@ -35,7 +35,7 @@ h1 {
 
 #addButton {
   padding: 8px 13px;
-  margin: 10px 30px;
+  margin: 10px 0px 10px 10px;
   font-size: 3.2vw;
   color: yellow;
   background-color: rgb(66, 32, 190);
@@ -47,7 +47,31 @@ h1 {
 
 #addButton:hover {
   padding: 8px 13px;
-  margin: 10px 30px;
+  margin: 10px 0px 10px 10px;
+  font-size: 3.2vw;
+  color: rgb(66, 32, 190);
+  border-style: solid;
+  border-color: yellow;
+  border-width: 3px;
+  border-radius: 13px;
+  background-color: yellow;
+}
+
+#removeButton {
+  padding: 8px 13px;
+  margin: 10px 20px 10px 10px;
+  font-size: 3.2vw;
+  color: yellow;
+  background-color: rgb(66, 32, 190);
+  border-style: solid;
+  border-color: yellow;
+  border-width: 3px;
+  border-radius: 13px;
+}
+
+#removeButton:hover {
+  padding: 8px 13px;
+  margin: 10px 20px 10px 10px;
   font-size: 3.2vw;
   color: rgb(66, 32, 190);
   border-style: solid;
