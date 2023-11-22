@@ -2,14 +2,17 @@
 import 'styles/styles.css';
 import { useState } from 'react';
 
+let counter = 0;
+
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [checked, setChecked] = useState([]);
 
   function addTask() {
-    const userInput = document.getElementById("addInput").value
+    const userInput = document.getElementById("addInput").value;
 
-    const data = {index: tasks.length, name: userInput}
+    const data = {index: counter, status: false, name: userInput};
+    counter = counter + 1;
     
     setTasks([...tasks, data])
     // OR
@@ -19,14 +22,21 @@ export default function Home() {
 
 
     // To clear the input field after button clicked
-    document.getElementById("addInput").value = ""
+    document.getElementById("addInput").value = "";
   }
 
   const selectedCheckbox = (event) => {
     // Keep track of the selected task ids
     // console.log(event.target.checked)
     if (event.target.checked) {
-      setChecked([...checked, event.target.id]);
+      for (let i = 0; i < tasks.length; i++) {        
+        if ((tasks[i].index) == event.target.id) {
+          let arr = [...tasks];
+          arr[i].status = true;
+          setTasks(arr);
+        }
+      }
+      console.log(tasks);
     } else {
       let arr = checked.filter(function(unselectedTask) {
         return unselectedTask != event.target.id
