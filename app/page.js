@@ -4,11 +4,14 @@ import { useState } from 'react';
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
+  const [checked, setChecked] = useState([]);
 
   function addTask() {
     const userInput = document.getElementById("addInput").value
+
+    const data = {index: tasks.length, name: userInput}
     
-    setTasks([...tasks, userInput])
+    setTasks([...tasks, data])
     // OR
     // let newArray = [...tasks] OR let newArray = tasks.map((x) => x);
     // newArray.push(userInput)
@@ -19,12 +22,25 @@ export default function Home() {
     document.getElementById("addInput").value = ""
   }
 
+  const selectedCheckbox = (event) => {
+    // Keep track of the selected task ids
+    // console.log(event.target.checked)
+    if (event.target.checked) {
+      setChecked([...checked, event.target.id]);
+    } else {
+      let arr = checked.filter(function(unselectedTask) {
+        return unselectedTask != event.target.id
+      });
+      setChecked(arr);
+    }
+  }
+
   function removeTask() {
-    const checkedBoxes = document.querySelectorAll('.checkbox:checked');
-    console.log(checkedBoxes)
-    Array.prototype.forEach.call(checkedBoxes, function(checkbox) {
-      checkbox.closest('label').remove();
+    Array.prototype.forEach.call(checked, function(checkedTaskIndex) {
+      document.getElementById(checkedTaskIndex).closest('label').remove();
     });
+
+    setChecked([]);
   }
 
   return (
@@ -36,28 +52,28 @@ export default function Home() {
         <button id="removeButton" onClick={removeTask}>Remove</button>
       </div>
       <div id="todoList">
-        <TodoList tasks={tasks} />
+        <TodoList tasks={tasks} onChangeAction={selectedCheckbox} />
       </div>
     </main>
   );
 }
 
-function Task({ value }) {
+function Task({ value, onChangeAction }) {
   return (
     <li>
       <label>
-        <input type="checkbox" className="checkbox" />
-        <span> {value}</span>
+        <input id={value.index} type="checkbox" className="checkbox" onChange={onChangeAction} />
+        <span> {value.name}</span>
       </label>
     </li>
   );
 }
 
-function TodoList({ tasks }) {
+function TodoList({ tasks, onChangeAction }) {
   return (
     <ul id="list">
       {tasks.map((task, index) => (
-        <Task key={index} value={task} />
+        <Task key={index} value={task} onChangeAction={onChangeAction} />
       ))}
     </ul>
   );
