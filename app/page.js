@@ -38,9 +38,6 @@ export default function Home() {
       }
     } else {
       for (let i = 0; i < tasks.length; i++) {
-        let arr = checked.filter(function(unselectedTask) {
-          return unselectedTask != event.target.id
-        });
         if ((tasks[i].index) == event.target.id) {
           let arr = [...tasks];
           arr[i].status = false;
