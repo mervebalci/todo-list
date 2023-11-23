@@ -36,14 +36,21 @@ export default function Home() {
           setTasks(arr);
         }
       }
-      console.log(tasks);
     } else {
-      let arr = checked.filter(function(unselectedTask) {
-        return unselectedTask != event.target.id
-      });
-      setChecked(arr);
+      for (let i = 0; i < tasks.length; i++) {
+        let arr = checked.filter(function(unselectedTask) {
+          return unselectedTask != event.target.id
+        });
+        if ((tasks[i].index) == event.target.id) {
+          let arr = [...tasks];
+          arr[i].status = false;
+          setTasks(arr)
+        }
+      }
     }
+    console.log(tasks)  
   }
+  
 
   function removeTask() {
     Array.prototype.forEach.call(checked, function(checkedTaskIndex) {
