@@ -6,7 +6,6 @@ let counter = 0;
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
-  const [checked, setChecked] = useState([]);
 
   function addTask() {
     const userInput = document.getElementById("addInput").value;
@@ -50,12 +49,18 @@ export default function Home() {
   
 
   function removeTask() {
-    Array.prototype.forEach.call(checked, function(checkedTaskIndex) {
-      document.getElementById(checkedTaskIndex).closest('label').remove();
+    let arr = tasks.filter(function(task) {
+      return task.status != true;
     });
-
-    setChecked([]);
+    setTasks(arr)
+    console.log(arr)
   }
+  
+  
+    // Array.prototype.forEach.call(checked, function(checkedTaskIndex) {
+    //   document.getElementById(checkedTaskIndex).closest('label').remove();
+    // });
+
 
   return (
     <main className="flex min-h-screen flex-col">
