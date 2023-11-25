@@ -10,7 +10,7 @@ export default function Home() {
   function addTask() {
     const userInput = document.getElementById("addInput").value;
 
-    const data = {index: counter, status: false, name: userInput};
+    const data = {id: counter, name: userInput};
     counter = counter + 1;
     
     setTasks([...tasks, data])
@@ -24,43 +24,15 @@ export default function Home() {
     document.getElementById("addInput").value = "";
   }
 
-  const selectedCheckbox = (event) => {
-    // Keep track of the selected task ids
-    // console.log(event.target.checked)
-    if (event.target.checked) {
-      for (let i = 0; i < tasks.length; i++) {        
-        if ((tasks[i].index) == event.target.id) {
-          let arr = [...tasks];
-          arr[i].status = true;
-          setTasks(arr);
-        }
-      }
-    } else {
-      for (let i = 0; i < tasks.length; i++) {
-        if ((tasks[i].index) == event.target.id) {
-          let arr = [...tasks];
-          arr[i].status = false;
-          setTasks(arr)
-        }
-      }
-    }
-    console.log(arr)  
-  }
   
-
-  function removeTask() {
+  function removeTask(id) {
+    console.log(id)
     let arr = tasks.filter(function(task) {
-      return task.status != true;
-    });
+      return task.id != id;
+    })
     setTasks(arr)
     console.log(arr)
   }
-  
-  
-    // Array.prototype.forEach.call(checked, function(checkedTaskIndex) {
-    //   document.getElementById(checkedTaskIndex).closest('label').remove();
-    // });
-
 
   return (
     <main className="flex min-h-screen flex-col">
@@ -68,31 +40,30 @@ export default function Home() {
       <div id="addTask">
         <input id="addInput" type="text" placeholder="Add a new to do..." />
         <button id="addButton" onClick={addTask}>Add</button>
-        <button id="removeButton" onClick={removeTask}>Remove</button>
       </div>
       <div id="todoList">
-        <TodoList tasks={tasks} onChangeAction={selectedCheckbox} />
+        <TodoList tasks={tasks} onClick={removeTask} />
       </div>
     </main>
   );
 }
 
-function Task({ value, onChangeAction }) {
+function Task({ value, onClick }) {
   return (
     <li>
       <label>
-        <button id={value.index} type="checkbox" className="checkbox" onChange={onChangeAction}>✔️</button>
-        <span className="task"> {value.name}</span>
+        <button className="checkbox" id={value.id} onClick={() => onClick(value.id)}></button>
+        <span className="task">{value.name}</span>
       </label>
     </li>
   );
 }
 
-function TodoList({ tasks, onChangeAction }) {
+function TodoList({ tasks, onClick }) {
   return (
     <ul id="list">
       {tasks.map((task, index) => (
-        <Task key={index} value={task} onChangeAction={onChangeAction} />
+        <Task key={index} value={task} onClick={onClick} />
       ))}
     </ul>
   );
