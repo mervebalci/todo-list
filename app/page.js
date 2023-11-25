@@ -44,7 +44,7 @@ export default function Home() {
         }
       }
     }
-    console.log(tasks)  
+    console.log(arr)  
   }
   
 
@@ -81,8 +81,8 @@ function Task({ value, onChangeAction }) {
   return (
     <li>
       <label>
-        <input id={value.index} type="checkbox" className="checkbox" onChange={onChangeAction} />
-        <span> {value.name}</span>
+        <button id={value.index} type="checkbox" className="checkbox" onChange={onChangeAction}>✔️</button>
+        <span className="task"> {value.name}</span>
       </label>
     </li>
   );
