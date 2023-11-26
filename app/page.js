@@ -24,16 +24,6 @@ export default function Home() {
     document.getElementById("addInput").value = "";
   }
 
-  
-  function removeTask(id) {
-    console.log(id)
-    let arr = tasks.filter(function(task) {
-      return task.id != id;
-    })
-    setTasks(arr)
-    console.log(arr)
-  }
-
   return (
     <main className="flex min-h-screen flex-col">
       <h1>TODO LIST</h1>
@@ -42,28 +32,36 @@ export default function Home() {
         <button id="addButton" onClick={addTask}>Add</button>
       </div>
       <div id="todoList">
-        <TodoList tasks={tasks} onClick={removeTask} />
+        <TodoList tasks={tasks} setTasks={setTasks} />
       </div>
     </main>
   );
 }
 
-function Task({ value, onClick }) {
+function Task({ value, tasks, setTasks }) {
+  function removeTask() {
+    let arr = tasks.filter(function(task) {
+      return task.id != value.id;
+    })
+    setTasks(arr)
+    console.log(arr)
+  }
+
   return (
     <li>
       <label>
-        <button className="checkbox" id={value.id} onClick={() => onClick(value.id)}></button>
+        <button className="checkbox" id={value.id} onClick={removeTask}></button>
         <span className="task">{value.name}</span>
       </label>
     </li>
   );
 }
 
-function TodoList({ tasks, onClick }) {
+function TodoList({ tasks, setTasks }) {
   return (
     <ul id="list">
       {tasks.map((task, index) => (
-        <Task key={index} value={task} onClick={onClick} />
+        <Task key={index} value={task} tasks={tasks} setTasks={setTasks} />
       ))}
     </ul>
   );
